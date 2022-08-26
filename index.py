@@ -16,5 +16,4 @@ def auth():
         return render_template('todo.html',response=response)
     else:
         return render_template('error.html')
- app.run()
-    
+app.run()
