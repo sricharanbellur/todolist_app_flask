@@ -1,11 +1,22 @@
 from flask import *
 app = Flask(__name__)
+@app.route('/')
+def home():
+    return render_template('index.html')
 @app.route('/register')
+
 def register():
+ 
     return render_template('register.html')
 @app.route('/save',methods=['POST'])
 def save():
-    return render_template('succesfully.html',display=request.form)
+    registered_users = {}
+    
+    registered_users.update(request.form)
+    print(registered_users)
+    with open('registered.txt','a') as f1:
+        f1.write(str(registered_users))
+    return render_template('successfully.html',display=request.form)
 
 @app.route('/login')
 def login():
